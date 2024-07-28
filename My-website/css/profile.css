@@ -12,9 +12,17 @@ body {
 
 header {
     background-color: white;
-    text-align: center;
-    padding: 1em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
     border-bottom: 1px solid #ddd;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: black;
 }
 
 nav ul {
@@ -34,17 +42,31 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: black;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2em;
 }
 
 #profile {
     display: flex;
+    width: 80%;
     padding: 2em;
     flex: 1;
+    background-color: #f4f4f4;
 }
 
 .left-side {
     flex: 1;
-    padding-right: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10em;
 }
 
 .right-side {
@@ -52,13 +74,12 @@ nav ul li a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2em;
     flex: 1;
 }
 
 .right-side img {
-    width: 200px;
-    height: auto;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
     object-fit: cover;
 }
