@@ -1,0 +1,78 @@
+/* css/style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+header {
+    background-color: white;
+    text-align: center;
+    padding: 1em 0;
+    border-bottom: 1px solid white;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 300px;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 300px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+/* 기존 프로필 페이지 스타일 유지 */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid green;
+}
+
+.profile-info {
+    max-width: 600px;
+}
+
+.profile-info h3 {
+    margin-top: 0;
+}
+
+.profile-info p {
+    margin: 0.5em 0;
+}
+
+/* 추가적인 갤러리 페이지 스타일 설정 */
+.content {
+    padding: 2em;
+}
+
+.content table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.content table img {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}

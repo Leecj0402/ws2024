@@ -1,0 +1,22 @@
+/* css/gallery.css */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2em;
+  background-color: #f4f4f4;
+}
+
+.gallery-item {
+  flex: 0 0 calc(33.333% - 1em);
+  margin: 0.5em;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
