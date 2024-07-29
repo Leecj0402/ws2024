@@ -16,19 +16,19 @@
 
             var memo = document.getElementById('demo');
             var inputBox = document.getElementById('inputBox');
-            var searchBth = document.getElementById('searchBth');
+            var searchBtn = document.getElementById('searchBtn');
 
             var search = document.querySelector('#search');
-            var changeBtn = document.querySelector('#changeBth');
+            var changeBtn = document.querySelector('#changeBtn');
             var resetBtn = document.querySelector('#resetBtn');
             
             //요소삭제
             HTMLButtonElement.prototype.handleDelEvt = function (btn) {
                 var trElement = btn.parentElement.parentElement;
-                var todoLiists=[];
+                var todoLists=[];
                 todoList.forEach(function(todoObj){
                     if(trElement.dataset.sep != todoObj.seq){
-                        todoLiists.push(todoObj);
+                        todoLists.push(todoObj);
                     }
                 })
                 todoList = todoLists;
@@ -41,11 +41,11 @@
                 trElement.innerHTML = `<tr align="center">
                     <td><input type="checkbox"></td>
                         <td><input type="text" id="modifyinput"></td>
-                        <td><button id = "modifyBth">수정</button></td>
+                        <td><button id = "modifyBtn">수정</button></td>
                         <td><button onClick="handleDelEvt(this)">삭제</button></td>
                     </tr>`;
                 var modifyinput = document.getElementById('modifyinput');
-                var modifyBth = document.querySelector('#modifyBth');
+                var modifyBtn = document.querySelector('#modifyBtn');
                 
                 modifyinput.onkeyup =function(event){
                     if(event.keyCode == 13){
@@ -57,7 +57,7 @@
                         drawList();
                     }
                 }
-                modifyBth.addEventListener('click',function(){
+                modifyBtn.addEventListener('click',function(){
                     todoList.forEach(function(todoObj){
                         if(trElement.dataset.sep == todoObj.seq){
                             todoObj.title = modifyinput.value;
@@ -124,7 +124,7 @@
             })
             
             //검색
-            searchBth.addEventListener('click',searchList);
+            searchBtn.addEventListener('click',searchList);
             search.addEventListener('keyup',function(event){
                 if(event.keyCode == 13){
                     searchList(event);
@@ -138,11 +138,11 @@
 </head>
 <body>
     등록:<input type="text" id="inputBox" value="등록하기">
-    <button type="button" id="changeBth">등록</button>
+    <button type="button" id="changeBtn">등록</button>
     <button type="button" id="resetBtn">지우기</button>
     <hr>
     검색:<input type="text" id="search">
-    <button type="button"id="searchBth"> 검색</button>
+    <button type="button"id="searchBtn"> 검색</button>
     <table  width="550" border="1">
         <tbody >
             <tr>
