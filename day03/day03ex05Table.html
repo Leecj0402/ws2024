@@ -8,10 +8,10 @@
 
         window.onload = function(){
             var todoList=[
-                {sep:101, title:"여행", done:false},
-                {sep:102, title:"여행가기", done:true},
-                {sep:103, title:"식사", done:false},
-                {sep:104, title:"청소", done:false},
+                {seq:101, title:"여행", done:false},
+                {seq:102, title:"여행가기", done:true},
+                {seq:103, title:"식사", done:false},
+                {seq:104, title:"청소", done:false},
             ];
 
             var memo = document.getElementById('demo');
@@ -27,7 +27,7 @@
                 var trElement = btn.parentElement.parentElement;
                 var todoLiists=[];
                 todoList.forEach(function(todoObj){
-                    if(trElement.dataset.sep != todoObj.sep){
+                    if(trElement.dataset.sep != todoObj.seq){
                         todoLiists.push(todoObj);
                     }
                 })
@@ -50,7 +50,7 @@
                 modifyinput.onkeyup =function(event){
                     if(event.keyCode == 13){
                         todoList.forEach(function(todoObj){
-                            if(trElement.dataset.sep == todoObj.sep){
+                            if(trElement.dataset.sep == todoObj.seq){
                                 todoObj.title = modifyinput.value;
                             }
                         })
@@ -59,7 +59,7 @@
                 }
                 modifyBth.addEventListener('click',function(){
                     todoList.forEach(function(todoObj){
-                        if(trElement.dataset.sep == todoObj.sep){
+                        if(trElement.dataset.sep == todoObj.seq){
                             todoObj.title = modifyinput.value;
                         }
                     })
@@ -71,7 +71,7 @@
             function drawList(){
                 demo.innerHTML=" "
                 todoList.forEach(function(todoObj){
-                    memo.innerHTML += `<tr align="center" data-sep="${todoObj.sep}">
+                    memo.innerHTML += `<tr align="center" data-sep="${todoObj.seq}">
                     <td><input type="checkbox"></td>
                         <td>${todoObj.title}</td>
                         <td><button onclick="editClickHandle(this)">수정</button></td>
@@ -87,7 +87,7 @@
                 demo.innerHTML=" "
                 todoList.forEach(function(todoObj){
                     if(search.value == todoObj.title || search.value == ""){
-                        memo.innerHTML += `<tr align="center" data-sep="${todoObj.sep}">
+                        memo.innerHTML += `<tr align="center" data-sep="${todoObj.seq}">
                             <td><input type="checkbox"></td>
                             <td>${todoObj.title}</td>
                             <td><button onclick="editClickHandle(this)">수정</button></td>
@@ -99,20 +99,20 @@
 
             //목록추가
             var handleEvent = function(event, nextnum){
-                todoList.push({sep:nextnum,title: inputBox.value, done:false});
+                todoList.push({seq:nextnum,title: inputBox.value, done:false});
                 drawList();
                 inputBox.value ="";
                 inputBox.focus();
             }
             inputBox.addEventListener('keyup',function(event) {
                 if(event.keyCode == 13){
-                    var nextnum = todoList[todoList.length-1].sep+1;
+                    var nextnum = todoList[todoList.length-1].seq+1;
                     handleEvent(event,nextnum);
                 }
             })
 
             changeBtn.addEventListener('click', function(event){
-                var nextnum = todoList[todoList.length-1].sep+1;
+                var nextnum = todoList[todoList.length-1].seq+1;
                 handleEvent(event,nextnum);
             });
 
