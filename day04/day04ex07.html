@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+        div {
+            padding: 5px;
+            border-radius: 8px;
+            border: 1px solid skyblue;
+            margin: 10px 0 0 0;
+        }
+        div.header{
+            margin: 0 auto;
+        }
+        .nav{
+            margin: 10px;
+            border: 0px solid rgb(255, 255, 255);
+            border-bottom: 1px solid rgb(212, 123, 123);
+            padding: 0px;
+            border-radius: 0px;
+        }
+        div.header ul li:hover{
+
+            font-size: 30px;
+            border-bottom: 2px solid rgb(212, 123, 123);
+            color: pink;
+        }
+        div.header h1{
+            
+            text-align: center;
+            margin: 10px auto;
+        }
+        ul{
+            margin: auto;
+            padding: 0;
+            border: 0px solid pink;
+            /*height: overflow로 펴기 가능*/
+            overflow: hidden;
+            width: 600px;
+        }
+        div.header ul li{
+            width: 120px;
+            height: 50px;
+            border: 0px solid black;
+            text-align: center;
+            list-style: none;
+            float: left;
+            box-sizing: border-box;
+            line-height: 50px;
+        }
+        
+        div.comtainer{
+            overflow: hidden;
+        }
+        div.middle {
+            overflow: hidden;
+        }
+        div.footer {
+            height: 100px;
+        }
+        div.container {
+            width: 1000px;
+            margin: auto;
+        }
+        div.header h1 {
+            text-align: center;
+        }
+        div.header div {
+            height: 50px;
+        }
+        div.middle > div:nth-child(1) {
+            width: 180px;
+            overflow: hidden;
+        }
+        div.middle > div:nth-child(2) {
+            width: 550px;
+            margin: 10px 20px;
+        }
+        div.middle > div:nth-child(3) {
+            width: 180px;
+        }
+        div.middle > div {
+            float: left;
+            height: 300px;
+        }
+        img {
+                max-width: 100%;
+                max-height: 100%;
+                display: block;
+                object-fit: contain;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>마블 스튜디오 코리아</h1>
+            <div class="nav">
+                <ul>
+                    <li>홈</li>
+                    <li>새소식</li> 
+                    <li>영화 목록</li>
+                    <li>스틸컷</li>
+                    <li>일정</li>
+                </ul>
+            </div>
+        </div> 
+        <div class="middle">
+            <div>
+                <img src="picture/데드풀.jpg" alt='데드풀'>
+            </div>
+            <div>
+                <img src="picture/닥스.jpg" alt='닥스'>
+            </div>
+            <div>
+                <img src="picture/1dd.jpg" alt='1dd'>
+            </div>
+        </div>
+        <div class="footer">
+            <div>데드풀과 울버린 100만 관객 돌파...!</div>
+            <div>은퇴한 아이언맨 로버트 다우니 주니어 마블 복귀..!</div>
+
+    </div>
+    
+</body>
+</html>
