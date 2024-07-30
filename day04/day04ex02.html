@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초등학교 저학년용 계산기</title>
+</head>
+<body>
+    <h1>초등학교 저학년용 계산기</h1>
+    <form>
+        <fieldset>
+            <legend>계산기</legend>
+            <input type="text" size="2" value="0" id="num1">
+            <select id="oper">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <input type="text" size="2" value="0" id="num2">
+            <button type="button" class="resultBtn" onclick="calculate()">=</button>
+            <span class="resultArea" id="result">0</span>
+        </fieldset>
+    </form>
+
+    <script>
+        function calculate() {
+            var num1 = document.getElementById("num1").value;
+            var num2 = document.getElementById("num2").value;
+            var oper = document.getElementById("oper").value;
+            var result;
+
+            if (oper === "+") {
+                result = parseInt(num1) + parseInt(num2);
+            } else if (oper === "-") {
+                result = parseInt(num1) - parseInt(num2);
+            } else if (oper === "*") {
+                result = parseInt(num1) * parseInt(num2);
+            } else if (oper === "/") {
+                result = parseInt(num1) / parseInt(num2);
+            }
+
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+</body>
+</html>
