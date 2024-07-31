@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var loadTodolist =JSON.parse( localStorage.getItem("todoList"));
+        console.log(loadTodolist);
+        var todoList =[];
+        if(loadTodolist){
+            todoList=loadTodolist;
+        }else{
+            todoList=[
+                {seq:101, title:"여행", done:false},
+                {seq:102, title:"여행가기", done:true},
+                {seq:103, title:"식사", done:false},
+                {seq:104, title:"청소", done:false},
+            ];
+        }
+
+        var seqCnt = todoList[todoList.length-1].seq+1;
+        window.onload = function(){
+            
+
+            var memo = document.getElementById('demo');
+            var inputBox = document.getElementById('inputBox');
+            var searchBth = document.getElementById('searchBth');
+
+            var search = document.querySelector('#search');
+            var changeBtn = document.querySelector('#changeBth');
+            var resetBtn = document.querySelector('#resetBtn');
+
+            //요소삭제
+            HTMLButtonElement.prototype.handleDelEvt = function (btn) {
+                var trElement = btn.parentElement.parentElement;
+                var newtodoLists=[];
+                todoList.forEach(function(todoObj){
+                    if(trElement.dataset.seq != todoObj.seq){
+                        newtodoLists.push(todoObj);
+                    }
+                })
+                todoList = newtodoLists;
+                renewal(todoList);
+                drawList();
+                
+                
+            }
+
+            //요소 수정
+            HTMLButtonElement.prototype.editClickHandle = function(btn) {
+                var trElement = btn.parentElement.parentElement;
+                var tdElement= trElement.children[1];
+                var text = tdElement.innerText;
+                tdElement.innerHTML = `<td>
+                    <input type="text" id="modifyinput" value="${text}">
+                    <input type="button" id="modifyBth" value="수정">
+                    <td>`;
+                var modifyinput = document.getElementById('modifyinput');
+                var modifyBth = document.querySelector('#modifyBth');
+                
+                modifyinput.onkeyup =function(event){
+                    if(event.keyCode == 13){
+                        todoList.forEach(function(todoObj){
+                            if(trElement.dataset.seq == todoObj.seq){
+                                todoObj.title = modifyinput.value;
+                            }
+                        })
+                        renewal(todoList);
+                        drawList();
+                    }
+                }
+
+                modifyBth.addEventListener('click',function(){
+                    todoList.forEach(function(todoObj){
+                        if(trElement.dataset.seq == todoObj.seq){
+                            todoObj.title = modifyinput.value;
+                        }
+                    })
+                    renewal(todoList);
+                    drawList();
+                })
+                
+            }
+
+
+            //완료로 표시 
+            window.complete = function(element){
+                var trElement = element.parentElement.parentElement;
+                var targetSeq = trElement.dataset.seq;
+                console.log(trElement);
+                var idx = todoList.findIndex(function(todo) {
+                    return targetSeq == todo.seq;
+                });
+
+                if(idx != -1) {
+                    todoList[idx].done = !todoList[idx].done;
+                    renewal(todoList);
+                    drawList();
+                }
+            }
+            
+
+            //초기추가 함수
+            function drawList(List){
+                demo.innerHTML=" ";
+                var todoList =[];
+                if(List){
+                    todoList =List;
+                }else{todoList = window.todoList}
+                todoList.forEach(function(todoObj){
+                    memo.innerHTML += `<tr align="center" data-seq="${todoObj.seq}">
+                    <td><input type="checkbox" ${todoObj.done?"checked":""} onchange ="window.complete(this)"></td>
+                        <td style="${todoObj.done?"text-decoration:line-through":""}">${todoObj.title}</td>
+                        <td><button onclick="editClickHandle(this)">수정</button></td>
+                        <td><button onClick="handleDelEvt(this)">삭제</button></td>
+                    </tr>`
+                })
+            }
+            drawList();
+            //
+
+            //목록추가
+            var handleEvent = function(){
+                todoList.push({seq:seqCnt++,title: inputBox.value, done:false});
+                renewal(todoList);
+                drawList();
+                inputBox.value ="";
+                inputBox.focus();
+            }
+            inputBox.addEventListener('keyup',function(event) {
+                if(event.keyCode == 13){
+                    handleEvent();
+                }
+            })
+            changeBtn.addEventListener('click', handleEvent);
+            //
+
+            //검색 함수들
+            function searchList(e){
+                demo.innerHTML=" ";
+                var newtodoLists=[];
+                todoList.forEach(function(todoObj){
+                    if(search.value == todoObj.title || search.value == ""){
+                        newtodoLists.push(todoObj);
+                    }
+                })
+                drawList(newtodoLists);
+            }
+            searchBth.addEventListener('click',searchList);
+            search.addEventListener('keyup',function(event){
+                if(event.keyCode == 13){
+                    searchList();
+                }
+            })
+            //
+
+
+             //목록 추가 입력칸 초기화
+            resetBtn.addEventListener('click',function(event){
+                inputBox.value="";
+            })
+            //
+
+
+            //로컬 정보 갱신
+            var renewal = function(todoList){
+                localStorage.setItem("todoList",JSON.stringify(todoList));
+            }
+            //
+        }
+    </script>
+
+</head>
+<body>
+    등록:<input type="text" id="inputBox" value="Leechangjun">
+    <button type="button" id="changeBth">등록</button>
+    <button type="button" id="resetBtn">지우기</button>
+    <hr>
+    검색:<input type="text" id="search">
+    <button type="button"id="searchBth"> 검색</button>
+    <table  width="550" border="1">
+        <tbody>
+            <tr>
+                <th>확인</th>
+                <th>할일</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </tbody>
+        <tbody id="demo">
+            
+        </tbody>
+        
+    </table>
+
+    
+</body>
+</html>
