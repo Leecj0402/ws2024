@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 실습</title>
+</head>
+<body>
+    
+    <script>
+        // var나 function으로 선언 하면 window객체의 멤버
+        var a_user = "user1";
+        let a_name = "김길동";
+
+        // 브라우저에서 상용하는 JS 객체의 최상위 객체 window
+        console.dir(window);
+        console.dir(document);
+        // script 최상위에서는 this가 곧 window객체이다.
+        console.log("this === window는 ", this == window);
+
+        // var로 선언된 변수를 열거하기
+        var admin01 = "김길동";
+        var admin02 = "이길동";
+        var admin03 = "박길동";
+        var admin04 = "홍길동";
+
+        // 연관배열 형태로 사용가능.
+        console.log("admin01 = ", admin01);
+        console.log("window.admin01 = ", window.admin01);
+        console.log("this.admin01 = ", this.admin01);
+        console.log("this['admin01'] = " + this['admin01']);
+        // 문자열 타입 + 숫자 타입의 결과 타입은 문자열 타입
+        // 'admin0' + 1 의 결과는 'admin01'
+        console.log("this['admin0' + 1] = " + this['admin0' + 1]);
+
+        // 반복문을 이용해서 순서대로 열거하기
+        for(var i=1; i<=4; i++) {
+            console.log(`admin0${i}의 결과는`, window[`admin0${i}`]);
+        }
+
+        // var로 선언된 변수는 window의 멤버
+
+        function aMyFn() {
+            console.log('myFunction 실행');
+        }
+
+        // JS ES6 이후 버전에서 class 키우드 사용 가능
+        class MyCls {
+            fn01() {
+                // 클래스 객체의 멤버에서 this 그 객체 자신
+                // 객체의 멤버 변수를 선언 하기위해 this.을 사용
+                this.aClsName = "마이 클래스";
+                // 클래스 멤버 내부에서는 window를 명시 해야 한다.
+                window.aClassName2 = "너의 클래스";
+                console.log("MyCls의 fn01() 함수에서 this는 ", this);
+                console.log(window);
+            }
+        }
+
+        let myClsRef = new MyCls();
+        myClsRef.fn01();
+    </script>
+
+</body>
+</html>

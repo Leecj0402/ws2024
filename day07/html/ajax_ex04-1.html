@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서</title>
+    <!-- Axios CDN 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <h1>할 일 목록</h1>
+    <button id="loadBtn">목록 불러오기</button>
+    <ul id="todoListArea"></ul>
+
+    <script>
+        document.querySelector("#loadBtn").addEventListener('click', function() {
+            axios.get("http://localhost:5500/todo")
+                .then(function(response) {
+                    var todoList = response.data;
+                    console.log(todoList);
+
+                    const todoListArea = document.querySelector('#todoListArea');
+                    todoList.forEach(todo => {
+                        const liElement = document.createElement("li");
+                        liElement.innerHTML = todo.title;
+                        todoListArea.appendChild(liElement);
+                    });
+                })
+                .catch(function(error) {
+                    console.error("할 일 목록을 불러오는 중 오류 발생", error);
+                });
+        });
+    </script>
+</body>
+</html>
