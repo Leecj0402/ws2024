@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NumberGAME</title>
 </head>
 <body>
 
-    <p>다음에서 시스템이 만든 숫자를 선택하세요.</p>
+    <p>다음 시스템이 제시한 숫자를 선택하십시오!</p>
     <p id="status">결과: </p>
     <div id="btns"></div>
     
@@ -66,7 +66,7 @@
                         status.innerText = "결과: 게임을 다시 실행 합니다!";
                     }
                     if(num === choiceNum) {
-                        status.innerText = "결과: 정답입니다^^";
+                        status.innerText = "결과: 정답입니다!";
                         min = max = choiceNum;
                     }
                     
