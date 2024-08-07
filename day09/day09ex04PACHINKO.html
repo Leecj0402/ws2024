@@ -40,6 +40,16 @@
             line-height: 100px;
             box-sizing: border-box;
         }
+        img {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            
+        }
+        #slot {
+            border: 3px solid navy;
+            float: left;
+        }
     </style>
 </head>
 <body>
@@ -49,18 +59,20 @@
     <div id="box"></div>
 
 <script>
-    // 자신감과 성취감이 일을 하게 한다.
     function Box() { }
     Box.prototype = Object.create(HTMLDivElement.prototype);
     Box.prototype.constructor = Box;
     Box.prototype.init = function(text) {
-        this.newBox = document.createElement("Box");
+        this.newBox = document.createElement("div");
         this.elementUl = document.createElement("ul");
-        for(var i=0; i<10; i++) {
+        for(var i=1; i<11; i++) {
             this.elementLi = document.createElement("li");
-            this.elementLi.innerText = i;
+            this.elementImg = document.createElement("img");
+            this.elementImg.src = `PACHINKOimg/${i}.jpg`;
+            this.elementLi.appendChild(this.elementImg);
             this.elementUl.appendChild(this.elementLi);
         }
+        
         this.newBox.appendChild(this.elementUl);
         this.newBox.setAttribute("class", "newBox");
         //this.start();
@@ -69,7 +81,7 @@
     Box.prototype.start = function(speed) {
         // console.log("speed: ", speed)
         this.elementUl.style.position = "absolute";
-        // Element의 좌표 움지임 확인
+        // Element의 좌표 움직임 확인
         this.elementUl.style.left = "0px";
         this.elementUl.style.top = "0px";
         this.y = 0;
@@ -87,6 +99,8 @@
         clearInterval(this.intervalRef);
         console.log(Math.floor(this.y / 100)*100);
         this.elementUl.style.top = Math.floor(this.y / 100)*100 + "px";
+        //console.log( Math.floor(this.y / 150) * 150)
+        return this.y;
     }
 
     const divBox = document.querySelector("#box");
@@ -107,7 +121,7 @@
     const startBtn = document.querySelector("#startBtn");
     startBtn.addEventListener('click', function(event) {
         boxArr.forEach(function(box){
-            box.start(Math.floor(5 + Math.random()*20));
+            box.start(Math.floor(1 + Math.random()*10));
         })
     });
     stopBtn.addEventListener('click', function(event) {
