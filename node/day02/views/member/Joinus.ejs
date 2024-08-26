@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <%-include('../inc/Top.ejs') %>
+    <hr />
+    <div class="container">
+        <h2>회원 가입</h2>
+        <form action="/joinus" method="post" id="form">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <td><input type="text" name="id"/></td>
+                </tr>
+                <tr>
+                    <th>PASS</th>
+                    <td><input  type="password" name="password"/></td>
+                </tr>
+                <tr>
+                    <th>성명</th>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td><input type="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td><Button>가입</Button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script src="/resources/js/inputch.js"></script>
+</body>
+
+</html>
