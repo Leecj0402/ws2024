@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-function Form() {
-  const [questions, setQuestions] = useState([]);
-  const [currentOption, setCurrentOption] = useState(''); // 현재 옵션 입력을 위한 상태
+function Form({ questions, setQuestions, registeredAnswers, setRegisteredAnswers, handleSubmit }) {
+  const [currentOption, setCurrentOption] = useState('');
   const [answers, setAnswers] = useState({});
-  const [registeredAnswers, setRegisteredAnswers] = useState({}); // 등록된 답변 상태 관리
 
   const addQuestion = () => {
     setQuestions([...questions, { questionText: '', questionType: 'text', options: [], registered: false }]);
@@ -32,7 +30,7 @@ function Form() {
   };
 
   const handleOptionChange = (event) => {
-    setCurrentOption(event.target.value); // 현재 옵션 입력 필드를 업데이트
+    setCurrentOption(event.target.value);
   };
 
   const addOption = (index) => {
@@ -43,7 +41,7 @@ function Form() {
       return question;
     });
     setQuestions(newQuestions);
-    setCurrentOption(''); // 입력 필드 초기화
+    setCurrentOption('');
   };
 
   const deleteOption = (qIndex, optIndex) => {
@@ -96,16 +94,8 @@ function Form() {
     setRegisteredAnswers({ ...registeredAnswers, [index]: null });
   };
 
-  const handleSubmit = () => {
-    console.log('제출된 답변:', registeredAnswers);
-    alert('모든 답변이 제출되었습니다!');
-    setQuestions([]);
-    setAnswers({});
-    setRegisteredAnswers({});
-  };
-
   return (
-    <div className="App">
+    <div>
       <h1>오합지능 성격유형검사</h1>
       <button onClick={addQuestion}>추가</button>
       {questions.map((question, index) => (
